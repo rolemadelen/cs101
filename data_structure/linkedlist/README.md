@@ -131,5 +131,6 @@ bool search(T data) {
 - `search(T data)` -> `O(n)`
 
 ## Practice Problems
-- Leetcode - [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+- Leetcode: `easy` - [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+- Leetcode: `easy` - [83. Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
 
