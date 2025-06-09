@@ -3,7 +3,7 @@
 
 ---
 
-- Data Structure
-  + [Linked List](./data_structure/linkedlist/)
-    * [Singly Linked List](./data_structure/linkedlist/singly_linkedlist/)
-    * [Doubly Linked List](./data_structure/linkedlist/doubly_linkedlist/)
+**Data Structure**
+- [Linked List](./data_structure/linkedlist/)
+  + [Singly Linked List](./data_structure/linkedlist/singly_linkedlist/)
+  + [Doubly Linked List](./data_structure/linkedlist/doubly_linkedlist/)
