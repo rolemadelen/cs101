@@ -4,4 +4,5 @@
 ---
 
 - Data Structure
-  + [Linked List](./data_structure/linkedlist)
+  + [Singly Linked List](./data_structure/linkedlist)
+  + [Doubly Linked List](./data_structure/doubly_linkedlist/)

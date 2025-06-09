@@ -6,20 +6,21 @@ class Node {
     public:
         T data;
         Node<T> *next;
-        Node<T>(T data) : data(data), next(nullptr) {}
+        Node<T> *prev;
+        Node<T>(T data) : data(data), prev(nullptr), next(nullptr) {}
 };
 
 template <typename T>
-class LinkedList {
+class DoublyLinkedList {
     private:
         Node<T> *head;
         Node<T> *tail;
         int size;
 
     public:
-        LinkedList() : head(nullptr), tail(nullptr), size(0) {}
+        DoublyLinkedList() : head(nullptr), tail(nullptr), size(0) {}
 
-        ~LinkedList() {
+        ~DoublyLinkedList() {
             while(head) {
                 pop_front();
             }
@@ -32,6 +33,7 @@ class LinkedList {
             if (head == nullptr) {
                 head = tail = newNode;
             } else {
+                head->prev = newNode;
                 newNode->next = head;
                 head = newNode;
             }
@@ -45,6 +47,7 @@ class LinkedList {
                 head = tail = newNode;
             } else {
                 tail->next = newNode;
+                newNode->prev = tail;
                 tail = newNode;
             }
 
@@ -57,12 +60,14 @@ class LinkedList {
                 return;
             }
 
-            Node<T> *temp = head;
-            head = head->next;
-            if (head == nullptr) {
-                tail = nullptr;
+            if (head == tail) {
+                delete head;
+                head = tail = nullptr;
+            } else {
+                head = head->next;
+                delete head->prev;
+                head->prev = nullptr;
             }
-            delete temp;
             size -= 1;
         }
 
@@ -73,22 +78,15 @@ class LinkedList {
             }
 
             if (head == tail) {
-
                 delete head;
                 head = tail = nullptr;
                 size -= 1;
                 return;
             }
 
-            Node<T> *temp = head;
-
-            while(temp->next != tail) {
-                temp = temp->next;
-            }
-
-            delete temp->next;
-            temp->next = nullptr;
-            tail = temp;
+            tail = tail->prev;
+            delete tail->next;
+            tail->next = nullptr;
             size -= 1;
         }
 
@@ -109,14 +107,12 @@ class LinkedList {
                 pop_back();
             } else {
                 Node<T> *temp = head;
-                while(temp->next->data != data) {
+                while(temp->data != data) {
                     temp = temp->next;
                 }
-
-                Node<T> *deleted_node = temp->next;
-                temp->next = temp->next->next;
-
-                delete deleted_node;
+                temp->prev->next = temp->next;
+                temp->next->prev = temp->prev;
+                delete temp;
                 size -= 1;
             }
 
@@ -141,7 +137,9 @@ class LinkedList {
                 }
 
                 Node<T> *newNode = new Node<T>(data);
+                newNode->prev = temp;
                 newNode->next = temp->next;
+                temp->next->prev = newNode;
                 temp->next = newNode;
                 size += 1;
             }
@@ -179,7 +177,20 @@ class LinkedList {
                 cout << curr->data << " ";
                 curr = curr->next;
             }
-            cout << " (" << size << ")\n";
+            if (head && tail) {
+                cout << " (" << size << ")  head: (" << head->data << ")  tail: (" << tail->data << ")\n";
+            }
+        }
+
+        void printRev() const {
+            Node<T> *curr = tail;
+            while(curr != nullptr) {
+                cout << curr->data << " ";
+                curr = curr->prev;
+            }
+            if (head && tail) {
+                cout << " (" << size << ")  head: (" << head->data << ")  tail: (" << tail->data << ")\n";
+            }
         }
 };
 
@@ -187,35 +198,42 @@ int main() {
     #if 0 // push_front
     cout << "------- push_front" << endl;
 
-    LinkedList<int> list1;
+    DoublyLinkedList<int> list1;
 
     list1.push_front(1);
+    list1.print();
     list1.push_front(2);
+    list1.print();
     list1.push_front(3);
+    list1.print();
     list1.push_front(4);
+    list1.print();
     list1.push_front(5);
-
     list1.print();
     #endif
 
     #if 0 // push_back
     cout << "------- push_back" << endl;
     
-    LinkedList<int> list2;
+    DoublyLinkedList<int> list2;
 
     list2.push_back(1);
-    list2.push_back(2);
-    list2.push_back(3);
-    list2.push_back(4);
-    list2.push_back(5);
-
     list2.print();
+    list2.push_back(2);
+    list2.print();
+    list2.push_back(3);
+    list2.print();
+    list2.push_back(4);
+    list2.print();
+    list2.push_back(5);
+    list2.print();
+
     #endif
 
     #if 0 // pop_front
     cout << "------- pop_front" << endl;
 
-    LinkedList<int> list3;
+    DoublyLinkedList<int> list3;
 
     list3.push_back(1);
     list3.push_back(2);
@@ -231,9 +249,13 @@ int main() {
     list3.print();
 
     list3.pop_front();
+    list3.print();
     list3.pop_front();
+    list3.print();
     list3.pop_front();
+    list3.print();
     list3.pop_front();
+    list3.print();
 
     list3.push_front(0);
     list3.push_front(1);
@@ -246,7 +268,7 @@ int main() {
     #if 0 // pop_back
     cout << "------- pop_back" << endl;
 
-    LinkedList<int> list4;
+    DoublyLinkedList<int> list4;
 
     list4.push_back(1);
     list4.push_back(2);
@@ -274,7 +296,7 @@ int main() {
     #if 0 // front and back
     cout << "------- front and back" << endl;
 
-    LinkedList<float> list5;
+    DoublyLinkedList<float> list5;
 
     list5.push_back(3.14);
     list5.push_back(1.56);
@@ -296,22 +318,28 @@ int main() {
     #if 0 // insert
     cout << "------- insert" << endl;
 
-    LinkedList<int> list6;
+    DoublyLinkedList<int> list6;
     list6.insert(1, 0);
-    list6.insert(3, 1);
-    list6.insert(2, 1);
-    list6.insert(4, 3);
-    list6.insert(6, 4);
-    list6.insert(5, 4);
-
     list6.print();
+    list6.insert(3, 1);
+    list6.print();
+    list6.insert(2, 1);
+    list6.print();
+    list6.insert(4, 3);
+    list6.print();
+    list6.insert(6, 4);
+    list6.print();
+    list6.insert(5, 4);
+    list6.print();
+
+    list6.printRev();
 
     #endif
 
     #if 0 // search
     cout << "------- Search" << endl;
 
-    LinkedList<int> list7;
+    DoublyLinkedList<int> list7;
     list7.push_back(1);
     list7.push_back(3);
     list7.push_back(5);
@@ -325,10 +353,10 @@ int main() {
     }
     #endif
 
-    #if 1 // delete
+    #if 0 // delete
     cout << "------- Delete" << endl;
 
-    LinkedList<int> list8;
+    DoublyLinkedList<int> list8;
     list8.push_back(1);
     list8.push_back(3);
     list8.push_back(5);

@@ -102,7 +102,69 @@ void pop_back() {
 }
 ```
 
+### Insert
+
+```cpp
+void insert(T data, int pos) {
+	if (pos < 0 || pos > size) {
+		cout << "Error: Invalid position." << endl;
+		return;
+	}
+
+	if (pos == 0) {
+		push_front(data);
+	} else if (pos == size ) {
+		push_back(data);
+	} else {
+		Node<T> *temp = head;
+		while (pos > 1) {
+			temp = temp->next;
+			--pos;
+		}
+
+		Node<T> *newNode = new Node<T>(data);
+		newNode->next = temp->next;
+		temp->next = newNode;
+	}
+}
+```
+
+### Delete
+
+```cpp
+bool deleteNode(T data) {
+	if (head == nullptr) {
+		cout << "Error: List is empty" << endl;
+		return false;
+	}
+
+	if (!search(data)) {
+		cout << "Error: data not found" << endl;
+		return false;
+	}
+
+	if (head->data == data) {
+		pop_front();
+	} else if (tail->data == data) {
+		pop_back();
+	} else {
+		Node<T> *temp = head;
+		while(temp->next->data != data) {
+			temp = temp->next;
+		}
+
+		Node<T> *deleted_node = temp->next;
+		temp->next = temp->next->next;
+
+		delete deleted_node;
+	}
+
+	return true;
+}
+```
+
 ### Search
+
 ```cpp
 bool search(T data) {
 	Node<T> *temp = head;
