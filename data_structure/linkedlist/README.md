@@ -38,7 +38,10 @@ class Node {
 - `tail->next = head`; 마지막 노드가 첫 번째 노드를 가리키며 만들어지는 순환 구조
 
 ## Practice Problems
-- Leetcode: `easy` - [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
-- Leetcode: `easy` - [83. Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
-- Leetcode: `easy` - [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description)
-- Leetcode: `easy` - [203. Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/description)
+- LeetCode: `easy` - [21. Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)
+- LeetCode: `easy` - [83. Remove Duplicates from Sorted List](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
+- LeetCode: `easy` - [141. Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/description)
+- LeetCode: `easy` - [203. Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/description)
+- LeetCode: `easy` - [206. Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/description)
+- LeetCode: `easy` - [234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/description)
+- LeetCode: `easy` - [876. Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list/description)
