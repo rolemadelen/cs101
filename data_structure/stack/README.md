@@ -35,4 +35,5 @@ const T pop() {
 
 ## Practice Problems
 - Baekjoon: `Silver 4` - [9012. 괄호](https://www.acmicpc.net/problem/9012)
+- Baekjoon: `Silver 4` - [10828. 스택](https://www.acmicpc.net/problem/10828)
 - LeetCode: `easy` - [20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses)
