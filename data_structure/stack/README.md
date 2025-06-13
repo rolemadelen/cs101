@@ -1,7 +1,6 @@
 # Stack
 
 - LIFO (Last-In, First-Out)의 구조를 가진 자료구조
-- 연결리스트와 배열로 구현 가능
 
 ## Basic Operations
 
