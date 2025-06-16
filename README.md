@@ -12,4 +12,4 @@
 
 **Python**
 - [Read and Write to a file](./python/file_io.md)
-- [Use Fernet to Encrypt and Decrypt a password](./python/fernet)
+- [Use Fernet to Encrypt and Decrypt a password](./python/fernet.md)
