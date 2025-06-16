@@ -11,6 +11,8 @@ with open(file_path, 'w+', encoding="utf-8") as f:
     f.write("Hello, World!\n")
 ```
 
+If a file doesn't exist in the path, it will create a new file.
+
 ## Reading from a file
 
 ```python
